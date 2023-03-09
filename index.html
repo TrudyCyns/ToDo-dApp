@@ -43,9 +43,22 @@
     <script>
       const web3 = new Web3("http://127.0.0.1:7545");
 
-      const TaskContractAddress = "0x00B8B3376a03d3036796F6e548aBD58d423b8c6c";
+      const TaskContractAddress = "0x39E245C080C957670b230708127D6de90850fa7a";
 
       const TaskContractABI = [
+        {
+          inputs: [],
+          name: "getTasks",
+          outputs: [
+            {
+              internalType: "string[]",
+              name: "",
+              type: "string[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
         {
           inputs: [
             {
@@ -54,22 +67,9 @@
               type: "string",
             },
           ],
-          name: "setTask",
+          name: "setTasks",
           outputs: [],
           stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTask",
-          outputs: [
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-          ],
-          stateMutability: "view",
           type: "function",
         },
       ];
@@ -87,12 +87,13 @@
       const setTask = async () => {
         const account = await getAccounts();
         const task = document.getElementById("task").value;
-        await TaskContract.methods.setTask(task).send({ from: account });
+        await TaskContract.methods.setTasks(task).send({ from: account });
         console.log("Task Set!");
       };
 
       const getTask = async () => {
-        const task = await TaskContract.methods.getTask().call();
+        const task = await TaskContract.methods.getTasks().call();
+        console.log(task[5]);
         document.getElementById("showTask").innerText = `${task}`;
       };
     </script>
