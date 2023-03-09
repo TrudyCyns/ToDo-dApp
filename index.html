@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do dApp</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <title>To Do dApp</title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="h3 p-5">A Todo dApp</p>
+      <p class="text-muted px-5">
+        Add and remove todo tasks from the list as required.
+      </p>
+      <p class="form-label">Add Task:</p>
+      <input type="text" name="task" id="task" class="form-control mb-3" />
+      <button class="btn btn-primary">Add Task</button>
+      <button class="btn btn-outline-primary">Show Tasks</button>
+      <p class="h5 mt-3">Tasks</p>
+      <p></p>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"
+      integrity="sha512-Ls8WO4Esu7Jb9a92BfIp1Ftgl9t5Ncaa/6zKzpOkTGXW+dPcJcI4Yz2HR7cXY0YcfIAsL7R9Gqfbw8ERX8iYaA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const web3 = new Web3("http://127.0.0.1:7545");
+
+      const TaskContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+
+      const TaskContractABI = [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_task",
+              type: "string",
+            },
+          ],
+          name: "setTask",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getTask",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ];
+
+      const TaskContract = console.log(web3);
+    </script>
+  </body>
 </html>
