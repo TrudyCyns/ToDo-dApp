@@ -24,6 +24,9 @@
       <button class="btn btn-outline-primary" onclick="getTask()">
         Show Tasks
       </button>
+      <button class="btn btn-danger" onclick="clearTasks()">
+        Delete All Tasks
+      </button>
       <p class="h5 mt-3">Tasks</p>
       <ul id="showTask"></ul>
     </div>
@@ -43,9 +46,16 @@
     <script>
       const web3 = new Web3("http://127.0.0.1:7545");
 
-      const TaskContractAddress = "0x39E245C080C957670b230708127D6de90850fa7a";
+      const TaskContractAddress = "0xD4d1745fbFe3f3E688d3a8BC0430Be5D99FFeA2B";
 
       const TaskContractABI = [
+        {
+          inputs: [],
+          name: "clearTasks",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
         {
           inputs: [],
           name: "getTasks",
@@ -101,6 +111,12 @@
             document.getElementById("showTask").appendChild(listItem);
           });
         }
+      };
+
+      const clearTasks = async () => {
+        const account = await getAccounts();
+
+        await TaskContract.methods.clearTasks().send({ from: account });
       };
     </script>
   </body>
